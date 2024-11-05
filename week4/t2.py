@@ -1,4 +1,4 @@
-import t
+import numbers
 num = [10,20,30,40]
-a = t.analyze_numbers(num)
+a = numbers.analyze_numbers(num)
 print(a)
