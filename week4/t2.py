@@ -1,3 +1,4 @@
-import function2
-a = function2.choice_area_Rock_Paper_Scissors()
-print (a)
+import t
+num = [10,20,30,40]
+a = t.analyze_numbers(num)
+print(a)
