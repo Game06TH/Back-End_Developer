@@ -1,12 +1,20 @@
 def choice_area_Rock_Paper_Scissors():
     while True:
-        a = int(input("เลือกว่าทำอะไร \n เป่ายิงฉุบ คือ 1\n หาพื้นที่ คือ 2 \n หรือ 0 หยุดการทำงาน \n :"))
+        a = int(input("เลือกว่าทำอะไร \n1 คือ เป่ายิงฉุบ \n2 คือ หาพื้นที่\n0 หยุดการทำงาน \n :"))
         if a == 1 :
-            print(Rock_Paper_Scissors())
+            print(choice_Rock_Paper_Scissors())
         elif a == 2:
             print(choice_area())
         else :
             break
+def choice_Rock_Paper_Scissors():
+    while True:
+        a = int(input("เลือกว่าทำอะไร \n1 คือ เล่น\n0 ย้อนกลับ \n :"))
+        if a == 1 :
+            print(Rock_Paper_Scissors())
+        else :
+            return
+
 
 def Rock_Paper_Scissors() :
     import random
@@ -18,12 +26,13 @@ def Rock_Paper_Scissors() :
            print ("เสมอ")
         elif (a == "ค้อน" and  b == "กระดาษ") or (a == "กรรไกร" and  b == "ค้อน") or (a == "กระดาษ" and  b == "กรรไกร") :
             print ("ชนะ")
+            print (choice_Rock_Paper_Scissors())
         else :
             print ("แพ้")
 
 def choice_area():
     while True:
-        a = int(input("เลือกว่าทำอะไร \n 4เหลี่ยมจัตุรัส คือ 1\n 4เหลี่ยมผืนผ้า คือ 2 \n วงกลม คือ 3 \n 0 ย้อนกลับ \n :"))
+        a = int(input("เลือกว่าทำอะไร \n1 คือ 4เหลี่ยมจัตุรัส\n2 คือ 4เหลี่ยมผืนผ้า\n3 คือ วงกลม\n 0 ย้อนกลับ \n :"))
         if a == 1 :
             print(area_square())
         elif a == 2:
@@ -31,7 +40,7 @@ def choice_area():
         elif a == 3:
             print(area_circle())
         else:
-            print(choice_area_Rock_Paper_Scissors())
+            return
 
 def area_rectanglr():
     print ("โปรแกรมคำนวณพื้นที่ 4เหลี่ยมผืนผ้า")
