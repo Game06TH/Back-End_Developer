@@ -4,4 +4,3 @@ def analyze_numbers(nam):
     C = max(nam)
     D = min(nam)
     return (A,B,C,D)
-nam = [10,20,30,40]
