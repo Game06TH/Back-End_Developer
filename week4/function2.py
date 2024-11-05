@@ -60,5 +60,3 @@ def area_circle():
     c1 = float(input("ใส่รัสมี : "))
     c2 =  3.14 * (c1**2)
     print (f"ค่าของพื้นที่วงกลม : {c2}") 
-
-print(choice_area_Rock_Paper_Scissors())
