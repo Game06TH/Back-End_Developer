@@ -14,7 +14,7 @@ def er(a,b,c):
             c+=a
         elif(a==0):
             break
-        return (b,c,)
+        return (b,c)
         
 
         
