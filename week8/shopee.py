@@ -1,6 +1,9 @@
 import database as db
 mycursor = db.mydb.cursor()
-def show_table():
+
+
+
+def show_table_all():
     mycursor.execute("SHOW TABLES")
     table = mycursor.fetchall()  
     print('หัวข้อทั้งหมด')  
@@ -44,7 +47,7 @@ def select_orders():
         return select_all()
 
 def select_all():
-    show_table()
+    show_table_all()
     print("ไม่พิมอะไรถือว่าหยุด")
     tabie = input("ใส่หัวข้อที่ต้องการค้นหา :")
     while True:
