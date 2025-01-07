@@ -3,12 +3,16 @@ mycursor = db.mydb.cursor()
 import datetime
 
 def choice():
-    print("ใส่ select = ดูข้อมูล , insert = เพิ่มข้อมูล")
+    print("ใส่ select = ดูข้อมูล , insert = เพิ่มข้อมูล , delete = ลบข้อมูล")
     tabie = input("เลือกรูปแบบ : ")
     if tabie == "select" :
         return select_all()
     elif tabie == "insert" :
         return choice_insert()
+    elif tabie == "delete" :
+        return choice_delete()
+
+
 
 def choice_insert() :
     show_table_all()
@@ -155,7 +159,68 @@ def insert_orders():
         i = db.mydb.commit()
         print (select_from_all(tabie))
         return choice_insert()
+    
+def choice_delete() : 
+    show_table_all()
+    print ("ไม่ใส่อะไรจะกลับไปตัวเลือกรูปแบบ")
+    tabie = input("ใส่หัวข้อที่ต้องการลบ :")
+    while True:
+        if tabie == 'users' :
+            select_from_all(tabie)
+            return delete_users()
+        elif tabie == 'products' :
+            select_from_all(tabie)
+            return delete_products()
+        elif tabie == 'categories' :
+            select_from_all(tabie)
+            return delete_categories()
+        elif tabie == 'orders' :
+            select_from_all(tabie)
+            return delete_orders()
+        else :
+            return choice()
+        
 
-choice()
+def delete_users() :
+    tabie = "users"
+    a = int(input("DELETE user_id :"))
+    sql = "DELETE FROM users WHERE user_id = %s"
+    val = (a,)
+    mycursor.execute(sql,val)
+    while True:
+        i = db.mydb.commit()
+        print (select_from_all(tabie))
+        return choice_delete()
 
+def delete_products() :
+    tabie ='products'
+    a = int(input("DELETE product_id :"))
+    sql = "DELETE FROM products WHERE product_id = %s"
+    val = (a,)
+    mycursor.execute(sql,val)
+    while True:
+        i = db.mydb.commit()
+        print (select_from_all(tabie))
+        return choice_delete()
 
+def delete_categories() :
+    tabie ='categories'
+    a = int(input("DELETE category_id :"))
+    sql = "DELETE FROM categories WHERE category_id = %s"
+    val = (a,)
+    mycursor.execute(sql,val)
+    while True:
+        i = db.mydb.commit()
+        print (select_from_all(tabie))
+        return choice_delete()
+
+def delete_orders() :
+    tabie = 'orders'
+    a = int(input("DELETE order_id :"))
+    sql = "DELETE FROM orders WHERE order_id = %s"
+    val = (a,)
+    mycursor.execute(sql,val)
+    while True:
+        i = db.mydb.commit()
+        print (select_from_all(tabie))
+        return choice_delete()
