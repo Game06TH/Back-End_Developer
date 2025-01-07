@@ -11,29 +11,22 @@ def choice():
         return choice_insert()
     elif tabie == "delete" :
         return choice_delete()
-
-
-
-def choice_insert() :
-    show_table_all()
-    print ("ไม่ใส่อะไรจะกลับไปตัวเลือกรูปแบบ")
-    tabie =input("ใส่หัวข้อที่ต้องการเพิ่มข้อมูล :")
-    while True :
-        if tabie == 'users' :
-            select_from_all(tabie)
-            return insert_users()
-        elif tabie == 'products' :
-            select_from_all(tabie)
-            return insert_products()
-        elif tabie == 'categories' :
-            select_from_all(tabie)
-            return insert_categories()
-        elif tabie == 'orders' :
-            select_from_all(tabie)
-            return insert_orders()
-        else :
-            return choice()
     
+def select_from_all(tabie) :
+    mycursor.execute(f"SELECT * FROM {tabie}")
+    myresulf = mycursor.fetchall()
+    for i in myresulf:
+        print (i)
+
+def show_table_all():
+    mycursor.execute("SHOW TABLES")
+    table = mycursor.fetchall()  
+    print('หัวข้อทั้งหมด')  
+    for i in table:
+        print(i)
+
+#-----------------------------------------------------------------------
+
 def select_all():
     show_table_all()
     print ("ไม่ใส่อะไรจะกลับไปตัวเลือกรูปแบบ")
@@ -50,18 +43,6 @@ def select_all():
         else :
             return choice()
 
-def select_from_all(tabie) :
-    mycursor.execute(f"SELECT * FROM {tabie}")
-    myresulf = mycursor.fetchall()
-    for i in myresulf:
-        print (i)
-
-def show_table_all():
-    mycursor.execute("SHOW TABLES")
-    table = mycursor.fetchall()  
-    print('หัวข้อทั้งหมด')  
-    for i in table:
-        print(i)
 
 def select_users():
     name = input('ป้อนชื่อที่ต้องการค้นหา :')
@@ -98,6 +79,28 @@ def select_orders():
     while True:
         print(i)
         return select_all()
+    
+#----------------------------------------------------------------------------
+    
+def choice_insert() :
+    show_table_all()
+    print ("ไม่ใส่อะไรจะกลับไปตัวเลือกรูปแบบ")
+    tabie =input("ใส่หัวข้อที่ต้องการเพิ่มข้อมูล :")
+    while True :
+        if tabie == 'users' :
+            select_from_all(tabie)
+            return insert_users()
+        elif tabie == 'products' :
+            select_from_all(tabie)
+            return insert_products()
+        elif tabie == 'categories' :
+            select_from_all(tabie)
+            return insert_categories()
+        elif tabie == 'orders' :
+            select_from_all(tabie)
+            return insert_orders()
+        else :
+            return choice()
     
 def insert_users():
     tabie = 'users'
@@ -142,6 +145,8 @@ def insert_categories():
         i = db.mydb.commit()
         print (select_from_all(tabie))
         return choice_insert()
+    
+#-------------------------------------------------------------------------------------
 
 def insert_orders():
     tabie = 'orders'
@@ -224,3 +229,7 @@ def delete_orders() :
         i = db.mydb.commit()
         print (select_from_all(tabie))
         return choice_delete()
+    
+
+
+    
