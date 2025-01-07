@@ -17,6 +17,7 @@ def select_from_all(tabie) :
     myresulf = mycursor.fetchall()
     for i in myresulf:
         print (i)
+        return tabie
 
 def show_table_all():
     mycursor.execute("SHOW TABLES")
