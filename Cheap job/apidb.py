@@ -61,7 +61,7 @@ def insert_orders(c,d,e,a,g):
     else :
         return True
     
-def select_from_all(table) :
+def select(table) :
     mycursor.execute(f"SELECT * FROM {table}")
     show = mycursor.fetchall()
     if len (show)<=0:
