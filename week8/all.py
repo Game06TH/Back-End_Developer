@@ -152,7 +152,6 @@ def insert_categories():
         print (select_from_all(tabie))
         return choice_insert()
     
-#-------------------------------------------------------------------------------------
 
 def insert_orders():
     tabie = 'orders'
@@ -170,6 +169,9 @@ def insert_orders():
         i = db.mydb.commit()
         print (select_from_all(tabie))
         return choice_insert()
+
+
+#-------------------------------------------------------------------------------------
     
 def choice_delete() : 
     show_table_all()
