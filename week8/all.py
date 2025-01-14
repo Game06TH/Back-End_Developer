@@ -5,12 +5,17 @@ import datetime
 def choice():
     print("ใส่ select = ดูข้อมูล , insert = เพิ่มข้อมูล , delete = ลบข้อมูล")
     tabie = input("เลือกรูปแบบ : ")
+    
     if tabie == "select" :
         return select_all()
     elif tabie == "insert" :
         return choice_insert()
     elif tabie == "delete" :
         return choice_delete()
+    elif tabie == "editdb" :
+        show_table_all()
+        table = input('ใส่ชื่อตาราง :')
+        return editdb(table)
     
 def select_from_all(tabie) :
     mycursor.execute(f"SELECT * FROM {tabie}")
@@ -26,7 +31,7 @@ def show_table_all():
     for i in table:
         print(i)
 
-#-----------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 def select_all():
     show_table_all()
@@ -225,12 +230,44 @@ def delete_orders() :
     a = int(input("DELETE order_id :"))
     sql = "DELETE FROM orders WHERE order_id = %s"
     val = (a,)
-    mycursor.execute(sql,val)
+    mycursor.executtablee(sql,val)
     while True:
         i = db.mydb.commit()
         print (select_from_all(tabie))
         return choice_delete()
-    
 
+#-----------------------------------------------------------------------------------------
 
-    
+def editdb(table) :
+    if table == "users" :
+        call = input('ใส่ชื่อคอลัมที่ต้องการจะเปลี่ยน :')
+        id = int(input("ใส่เลขไอดีที่ต้องการเปลี่ยน :"))
+        vall = input('ใส่ค่าที่ต้องการจะเปลี่ยน :')
+        sql =f"UPDATE users SET {call} = %s  WHERE user_id = %s  "
+        val = (vall,id)
+        mycursor.execute(sql,val)
+        db.mydb.commit()
+    elif table == "products" :
+        call = input('ใส่ชื่อคอลัมที่ต้องการจะเปลี่ยน :')
+        id = int(input("ใส่เลขไอดีที่ต้องการเปลี่ยน :"))
+        vall = input('ใส่ค่าที่ต้องการจะเปลี่ยน :')
+        sql =f"UPDATE products SET {call} = %s  WHERE product_id = %s  "
+        val = (vall,id)
+        mycursor.execute(sql,val)
+        db.mydb.commit()
+    elif table == "categories" :
+        call = input('ใส่ชื่อคอลัมที่ต้องการจะเปลี่ยน :')
+        id = int(input("ใส่เลขไอดีที่ต้องการเปลี่ยน :"))
+        vall = input('ใส่ค่าที่ต้องการจะเปลี่ยน :')
+        sql =f"UPDATE categories SET {call} = %s  WHERE category_id = %s  "
+        val = (vall,id)
+        mycursor.execute(sql,val)
+        db.mydb.commit()
+    elif table == "orders" :
+        call = input('ใส่ชื่อคอลัมที่ต้องการจะเปลี่ยน :')
+        id = int(input("ใส่เลขไอดีที่ต้องการเปลี่ยน :"))
+        vall = input('ใส่ค่าที่ต้องการจะเปลี่ยน :')
+        sql =f"UPDATE orders SET {call} = %s  WHERE order_id = %s  "
+        val = (vall,id)
+        mycursor.execute(sql,val)
+        db.mydb.commit()
