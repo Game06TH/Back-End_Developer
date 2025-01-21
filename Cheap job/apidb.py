@@ -23,9 +23,9 @@ def editdb (table,call,id,vall) :
         return True
     
 
-def insert_users(c,d,b,a,e):
+def insert_users(d,b,a,e):
     sql = "INSERT INTO users VALUES (%s,%s,%s,%s,%s) "
-    val = (f'{c}',f'{d}',f'{b}',f'{a}',f'{e}')
+    val = (None,d,b,a,e)
     mycursor.execute(sql,val)
     if mycursor.rowcount <= 0 :
         return False
@@ -33,28 +33,28 @@ def insert_users(c,d,b,a,e):
         return True
  
 
-def insert_products(c,d,b,a,e,g):
+def insert_products(d,b,a,e,g):
     sql = "INSERT INTO products VALUES (%s,%s,%s,%s,%s,%s) "
-    val = (f'{c}',f'{d}',f'{b}',f'{a}',f'{e}',f'{g}')
+    val = (None,d,b,a,e,g)
     mycursor.execute(sql,val)
     if mycursor.rowcount <= 0 :
         return False
     else :
         return True
 
-def insert_categories(c,d):
+def insert_categories(d):
     sql = "INSERT INTO categories VALUES (%s,%s) "
-    val = (f'{c}',f'{d}')
+    val = (None,d)
     mycursor.execute(sql,val)
     if mycursor.rowcount <= 0 :
         return False
     else :
         return True
     
-def insert_orders(c,d,e,a,g):
+def insert_orders(d,e,a,g):
     b = datetime.datetime.today()
     sql = "INSERT INTO orders VALUES (%s,%s,%s,%s,%s,%s) "
-    val = (f'{c}',f'{d}',f'{b}',f'{e}',f'{a}',f'{g}')
+    val = (None,d,b,e,a,g)
     mycursor.execute(sql,val)
     if mycursor.rowcount <= 0 :
         return False
@@ -68,3 +68,9 @@ def select(table) :
         return False,None
     else :
         return True,show
+
+
+
+d = input ("ใส่ประเภทของสินค้า :") 
+print (insert_categories(d))
+    
