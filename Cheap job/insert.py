@@ -3,7 +3,7 @@ mycursor = db.mydb.cursor()
 import datetime
 
 def show_COLUMNS() :
-    mycursor.execute(f"SHOW COLUMNS FROM {t}")
+    mycursor.execute("SHOW COLUMNS FROM table_name")
     show = mycursor.fetchall()  
     if len (show)<=0:
         return False,None
