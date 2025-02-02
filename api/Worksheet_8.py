@@ -87,7 +87,8 @@ async def insertdb(table,id,name,grade):
 
 
 #ทดสอบ API 
-#หลังจากรัน FastAPI (uvicorn main:app --reload) ให้ทดสอบ API:
+# cd C:\31901-2005\backend_02\api
+#หลังจากรัน FastAPI (python -m uvicorn Worksheet_8:app --reload) ให้ทดสอบ API:
 #Swagger UI: http://127.0.0.1:8000/docs
 #Redoc: http://127.0.0.1:8000/redoc
 
