@@ -1,10 +1,11 @@
 import fastapi
 import mysql.connector
+import datetime
 mydb = mysql.connector.connect(
     host="localhost",
     user='root',
     password = "1234",
-    database = 'school'
+    database = 'online store'
 )
 
 print("Connected to Database:", mydb.is_connected())
@@ -59,31 +60,57 @@ async def updetedb(table,column,a,name,b):
     
 #http://127.0.0.1:8000/updetedb/subject/name_subject/BACKEND/id_subject/6
 
-# ------------------------------------------ <insert/subject> ---------------------------------------- #
-@app.get("/insertdb/{table}/{id}/{name}")
-async def insertdb(table: str, id: int, name: str):
-    sql = f"INSERT INTO {table} (id_subject ,name_subject) VALUES (%s, %s)"
-    val = (id,name)
+# ------------------------------------------ <insert/users> ---------------------------------------- #
+@app.get("/insertdb/{table}/{user_id}/{username}/{password}/{email}/{userscol}")
+async def insertdb(table, user_id, username,password,email,userscol):
+    sql = f"INSERT INTO {table} VALUES (%s,%s,%s,%s,%s) "
+    val = (user_id,username,password,email,userscol)
     mycursor.execute(sql,val)
-    mydb.commit()
-    if mycursor.rowcount <= 0:
+    if mycursor.rowcount <= 0 :
         return False,None
-    else:
+    else :
         return True,val
-#http://127.0.0.1:8000/insertdb/subject/5/art 
+#http://127.0.0.1:8000/users///// 
 
-# ------------------------------------------ <insert/student> ---------------------------------------- #
-@app.get("/insertdb/{table}/{id}/{name}/{grade}")
-async def insertdb(table,id,name,grade):
-    sql = f"INSERT INTO {table} (id_student ,name ,grade) VALUES (%s,%s,%s)"
-    val = (id,name,grade)
+# ------------------------------------------ <insert/products> ---------------------------------------- #
+@app.get("/insertdb/{table}/{product_id}/{product_name}/{description}/{price}/{stock}/{category_id}")
+async def insertdb(table,product_id,product_name,description,price,stock,category_id):
+    sql = f"INSERT INTO {table} VALUES (%s,%s,%s,%s,%s,%s) "
+    val = (product_id,product_name,description,price,stock,category_id)
     mycursor.execute(sql,val)
     mydb.commit()
     if mycursor.rowcount <= 0:
         return False,None
     else:
         return True,val
-#http://127.0.0.1:8000/insertdb/student/15/art/3.3 
+#http://127.0.0.1:8000/insertdb/products//////
+
+# ------------------------------------------ <insert/categories> ---------------------------------------- #
+@app.get("/insertdb/{table}/{category_id}/{category_iname}")
+async def insertdb(table,category_id,category_iname):
+    sql = f"INSERT INTO {table} VALUES (%s,%s)"
+    val = (category_id,category_iname)
+    mycursor.execute(sql,val)
+    mydb.commit()
+    if mycursor.rowcount <= 0:
+        return False,None
+    else:
+        return True,val
+#http://127.0.0.1:8000/insertdb/categories/// 
+
+# ------------------------------------------ <insert/orders> ---------------------------------------- #
+@app.get("/insertdb/{table}/{order_id}/{user_id}/{order_date1}/{total_amount}/{status}/{product_id}")
+async def insertdb(table,order_id,user_id,total_amount,status,product_id):
+    order_date = datetime.datetime.today()
+    sql = f"INSERT INTO {table} VALUES (%s,%s,%s,%s,%s,%s)"
+    val = (order_id,user_id,order_date,total_amount,status,product_id)
+    mycursor.execute(sql,val)
+    mydb.commit()
+    if mycursor.rowcount <= 0:
+        return False,None
+    else:
+        return True,val
+#http://127.0.0.1:8000/insertdb/orders//////
 
 
 #ทดสอบ API 
